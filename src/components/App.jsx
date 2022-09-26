@@ -10,7 +10,6 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const countTotalFeedback = good + neutral + bad;
   const btnFeedback = ['good', 'bad', 'neutral'];
 
   const leaveFeedback = (btnName) => {
@@ -31,8 +30,11 @@ const App = () => {
   
   }
 
+  const countTotalFeedback = () => good + neutral + bad;
+
   const countPositiveFeedbackPercentage = () => {
-    return Math.round(good * 100 / countTotalFeedback);
+    const total = good + neutral + bad;
+    return Math.round(good * 100 / total);
   }
 
   return (
@@ -57,7 +59,7 @@ const App = () => {
             good={good} 
             neutral={neutral} 
             bad={bad} 
-            total ={countTotalFeedback} 
+            total={countTotalFeedback()} 
             positivePercentage={countPositiveFeedbackPercentage()} 
           />
         }
